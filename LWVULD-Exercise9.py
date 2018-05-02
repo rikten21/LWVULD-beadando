@@ -22,5 +22,13 @@ def biggestNumber(numberlist):
     return max
 
 #main:
-print(biggestNumber(primeFactors(600851475143)))
+#print(biggestNumber(primeFactors(600851475143)))
 #print(biggestNumber(primeFactors(13195)))
+
+def biggestPrimefactor(n):
+    for i in range(n,0,-1):
+        if n%i == 0:
+            if isPrime(i):
+                return i
+
+#print(biggestPrimefactor(600851475143))
