@@ -3,7 +3,7 @@ import math
 # The prime factors of 13195 are 5, 7, 13 and 29.
 # The prime factors of 600851475143 are 71, 839,  1471 and 6857.
 
-def isPrime(n):
+def isPrime(n): #ez a függvény nem is szükséges
     for i in range(2,n):
         if n%i == 0:
             return False
@@ -27,9 +27,9 @@ def biggestPrimeFactors3(n): #Még gyorsabb, mint a 2-es, mert a 2-t, mint egyet
         return 2
     div = 3
     while n != 1:
-        if isPrime(div):
-            while n%div == 0:
-                n = n/div
+        #if isPrime(div): nem kell ellenőrizni, hogy prím-e, mert amúgy is leosztunk annyiszor az adott számmal, ahányszor lehet, így a többszörösével már nem lesz osztható
+        while n%div == 0:
+            n = n/div
         div += 2
     return div-2
 
