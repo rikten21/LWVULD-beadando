@@ -1,41 +1,19 @@
-import math
-
 # The prime factors of 13195 are 5, 7, 13 and 29.
 # The prime factors of 600851475143 are 71, 839,  1471 and 6857.
 
-def isPrime(n): #ez a függvény nem is szükséges
-    for i in range(2,n):
-        if n%i == 0:
-            return False
-    return True
-
-def biggestPrimeFactors2(n): 
-    div = 1
-    while n != 1:
-        div += 1
-        if isPrime(div):
-            while n%div == 0:
-                n = n/div
-    return div
-
-def biggestPrimeFactors3(n): #Még gyorsabb, mint a 2-es, mert a 2-t, mint egyetlen páros prímet külön kezeli, így utána csak a páratlanokat vizsgálja.
-    if n <= 1: #Így kezeli azt is, ha 1-et, 0-át vagy negatív egészszámot adunk a függvénynek.
+def biggestPrimeFactors(n):
+    if n <= 1: #1 vagy annál kisebb egészekre nem értelmez a függvény
         return None
-    while n%2 == 0:
+    while n%2 == 0: #leoszt 2-vel, amíg lehet
         n = n/2
-    if n == 1:
+    if n == 1: #ha 2-es hatvány volt a szám
         return 2
-    div = 3
+    div = 3 #ezzel osztunk végig a számon
     while n != 1:
-        #if isPrime(div): nem kell ellenőrizni, hogy prím-e, mert amúgy is leosztunk annyiszor az adott számmal, ahányszor lehet, így a többszörösével már nem lesz osztható
         while n%div == 0:
             n = n/div
-        div += 2
+        div += 2 #elég a páratlan számokon végigmenni
     return div-2
 
 #main:
-# print(biggestPrimeFactors2(13195))
-# print(biggestPrimeFactors2(600851475143))
-
-# print(biggestPrimeFactors3(13195))
-print(biggestPrimeFactors3(600851475143))
+print(biggestPrimeFactors(600851475143), "is the biggest prime factor of 600851475143.")
