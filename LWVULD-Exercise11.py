@@ -1,31 +1,30 @@
-def numReverse(n):
-    r = 0
-    p = len(str(n))-1
-    while n!=0:
-        r += n%10 * 10**p
-        n = n//10
-        p -= 1
-    return r
-
-def isPalindromicNum(n):
-    l = int(len(str(n))) #a szám hossza
-    if l%2 == 0:
-        h = int(l/2) #a szám hosszának a fele
-        p = 0  # helyiérték számolása
-        n1 = n//10**h
-        n2 = numReverse(n%10**h)
-        if n1 == n2:
-            return True
+def isPalindromicNum(n): #egy adott szám palindrom-e
+    n = str(n)
+    nReversed = n[::-1] #szeleteléssel, visszafelé lépkedve fordítja meg a sztinget
+    if n == nReversed:
+        return True
     return False
 
-def biggest3digitPalindrome():
-    for i in range(1000,100,-1):
-        for j in range(1000,100,-1):
+
+def biggestPalindromeFromTwo3digitnums():
+    for i in range(1000,100,-1): #a legnagyobb 3 jegyű
+        for j in range(1000,100,-1): #a második legnagyobb 3 jegyű
+            if isPalindromicNum(i*j): #amiknek a szorzata
+                return i, j, i*j
+
+#main
+# print(biggestPalindromeFromTwo3digitnums())
+i, j, pal = biggestPalindromeFromTwo3digitnums()
+print("The biggest palindrome from the product of two 3-digit numbers is {} from {} x {}".format(pal,i,j))
+
+##########################
+#extra:
+def biggestPalindromeFromTwo_n_digitnums(n): #n-jegyű két szám szorzatából kapott legnagyobb palindrom
+    fh = 10 ** n
+    ah = 10 ** (n-1)
+    for i in range(fh, ah, -1):
+        for j in range(fh, ah, -1):
             if isPalindromicNum(i*j):
                 return i, j, i*j
 
-print(biggest3digitPalindrome())
-
-# print(isPalindromicNum(564465))
-# print(isPalindromicNum(456456))
-# print(isPalindromicNum(12345))
+# print(biggestPalindromeFromTwo_n_digitnums(3))

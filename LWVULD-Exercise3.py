@@ -1,4 +1,4 @@
-def longestWord(list):
+def lengthOfLongestWord(list): #a lista leghosszabb szavának hossza
     length = 0
     for i in list:
         if len(i)>length:
@@ -6,12 +6,12 @@ def longestWord(list):
     return length
 
 def framer(list):
-    width = longestWord(list)+4
-    for i in range(width):
+    width = lengthOfLongestWord(list)+4
+    for i in range(width): #a keret felső oldala
         print('*', end='')
     print()
     for i in list:
-        i+=' '*(longestWord(list)-len(i))
+        i+=' '*(lengthOfLongestWord(list)-len(i)) #kiegészítjük szóközökkel, hogy egyenlő hosszú legyen a leghosszabb szóval
         print('* {0} *'.format(i))
     for i in range(width):
         print('*', end='')
